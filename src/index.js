@@ -32,12 +32,15 @@ function assembleYaml (yamlPath) {
     const dataToWrite = template + "\ndefinitions:\n" + definitions.map(fileName => {
         const defName = fileName.replace(/\.[^.]+$/, "");
         const contents = readFileSync(`${ defsPath }/${ fileName }`).toString();
+        
         return "  " + defName + ":\n" + pad(contents, 4);
     }).join("\n") + "\npaths:\n" + paths.map(fileName => {
         const contents = readFileSync(`${ pPath }/${ fileName }`).toString();
+        
         return pad(contents, 2);
     }).join("\n");
     writeFileSync(file.name, dataToWrite);
+    
     return file;
 }
 
@@ -62,17 +65,21 @@ module.exports = async function (expressApp, config = {}) {
 
     return new Promise((resolve, reject) => {
         swaggerValidation(swaggerDocumentFile.name, expressApp, (err, middleware) => {
+
             if (err) {
                 return reject(err);
             }
+
             expressApp.use(
                 middleware.metadata(),
                 middleware.parseRequest(),
                 middleware.validateRequest(),
                 function (err, _, res, next) {
+
                     if (res.headersSent) {
                         return next(err);
                     }
+
                     res.status(400).json({
                         error: err.message
                     });
@@ -82,5 +89,4 @@ module.exports = async function (expressApp, config = {}) {
             resolve();
         });
     });
-
 };
