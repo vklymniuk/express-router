@@ -1,0 +1,36 @@
+{
+  "name": "express-router",
+  "version": "0.0.1",
+  "description": "Convenient middleware aggregation for express JS",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vklymniuk/express-router.git"
+  },
+  "keywords": [
+    "express",
+    "middleware",
+    "router",
+    "route",
+    "manageteam"
+  ],
+  "author": "Vladimir Klymniuk",
+  "license": "MIT-advertising",
+  "files": [
+    "src/index.js"
+  ],
+  "bugs": {
+    "url": "https://github.com/vklymniuk/express-router/issues"
+  },
+  "homepage": "https://github.com/vklymniuk/express-router#readme",
+  "dependencies": {
+    "walk-sync": "^3.0.0"
+  },
+  "devDependencies": {
+    "semantic-release": "^20.1.0",
+    "@vklymniuk/semantic-release-config": "^0.0.1"
+  }
+}
